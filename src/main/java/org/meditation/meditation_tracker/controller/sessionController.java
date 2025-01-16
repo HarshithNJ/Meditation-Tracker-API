@@ -1,5 +1,7 @@
 package org.meditation.meditation_tracker.controller;
 
+import java.util.List;
+
 import org.meditation.meditation_tracker.dto.session;
 import org.meditation.meditation_tracker.service.sessionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,14 @@ public class sessionController {
     
     /*To create a new session*/
     //to add one session
-    @PostMapping("/session")
+    @PostMapping("/sessions")
     public ResponseEntity<Object> createSession(@RequestBody session session){
         return service.createSession(session);
+    }
+
+    //To add multiple sessions
+    @PostMapping("/sessions/multiple")
+    public ResponseEntity<Object> createMulSessions(@RequestBody List<session> sessions){
+        return service.createMulSessions(sessions);
     }
 }
