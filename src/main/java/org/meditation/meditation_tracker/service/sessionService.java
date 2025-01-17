@@ -51,5 +51,22 @@ public class sessionService {
 
             return new ResponseEntity<Object>(map, HttpStatus.CREATED);
     }
+
+    public ResponseEntity<Object> getAllSessions() {
+        List<session> sessions = repository.findAll();
+
+        if(sessions.isEmpty()){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "No sessions found");
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Sessions fetched successfully");
+            map.put("Data", sessions);
+
+            return new ResponseEntity<Object>(map, HttpStatus.FOUND);
+        }
+    }
     
 }
