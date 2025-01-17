@@ -9,4 +9,6 @@ public interface sessionRepository extends JpaRepository<session, Integer> {
 
     List<session> findByDate(String date);
 
+    List<session> findByType(String type);
+
 }

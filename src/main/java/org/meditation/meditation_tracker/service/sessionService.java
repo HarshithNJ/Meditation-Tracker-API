@@ -85,5 +85,22 @@ public class sessionService {
             return new ResponseEntity<Object>(map, HttpStatus.FOUND);
         }
     }
+
+    public ResponseEntity<Object> getSessionByType(String type) {
+        List<session> li = repository.findByType(type);
+
+        if(li.isEmpty()){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "No sessions found for the given type: " + type);
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Sessions fetched successfully for the given type");
+            map.put("Data", li);
+
+            return new ResponseEntity<Object>(map, HttpStatus.FOUND);
+        }
+    }
     
 }

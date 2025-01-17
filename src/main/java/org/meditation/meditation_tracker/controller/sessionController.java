@@ -48,4 +48,10 @@ public class sessionController {
     public ResponseEntity<Object> getSessionByDate(@PathVariable String date){
         return service.getSessionByDate(date);
     }
+
+    //To Fetch all records from Database by Type
+    @GetMapping("/sessions/type/{type}")
+    public ResponseEntity<Object> getSessionByType(@PathVariable String type){
+        return service.getSessionByType(type);
+    }
 }
