@@ -6,6 +6,7 @@ import org.meditation.meditation_tracker.dto.session;
 import org.meditation.meditation_tracker.service.sessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,5 +54,19 @@ public class sessionController {
     @GetMapping("/sessions/type/{type}")
     public ResponseEntity<Object> getSessionByType(@PathVariable String type){
         return service.getSessionByType(type);
+    }
+
+
+
+
+
+
+
+
+    /* To Delete a Session Record */
+    //To Delete a Session Record by ID
+    @DeleteMapping("/sessions/{id}")
+    public ResponseEntity<Object> deleteSession(@PathVariable int id){
+        return service.deleteSession(id);
     }
 }

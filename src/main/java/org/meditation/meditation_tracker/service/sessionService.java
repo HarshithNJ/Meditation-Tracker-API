@@ -3,6 +3,7 @@ package org.meditation.meditation_tracker.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.meditation.meditation_tracker.dto.session;
 import org.meditation.meditation_tracker.repository.sessionRepository;
@@ -100,6 +101,24 @@ public class sessionService {
             map.put("Data", li);
 
             return new ResponseEntity<Object>(map, HttpStatus.FOUND);
+        }
+    }
+
+    public ResponseEntity<Object> deleteSession(int id) {
+        Optional<session> op = repository.findById(id);
+
+        if (op.isPresent()){
+            repository.deleteById(id);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Session deleted successfully");
+
+            return new ResponseEntity<Object>(map, HttpStatus.OK);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "Session not found");
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
         }
     }
     
