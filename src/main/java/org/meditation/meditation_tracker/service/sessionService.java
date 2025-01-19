@@ -53,6 +53,17 @@ public class sessionService {
             return new ResponseEntity<Object>(map, HttpStatus.CREATED);
     }
 
+
+
+
+
+
+
+
+
+
+
+
     public ResponseEntity<Object> getAllSessions() {
         List<session> sessions = repository.findAll();
 
@@ -103,6 +114,20 @@ public class sessionService {
             return new ResponseEntity<Object>(map, HttpStatus.FOUND);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
     public ResponseEntity<Object> deleteSession(int id) {
         Optional<session> op = repository.findById(id);
