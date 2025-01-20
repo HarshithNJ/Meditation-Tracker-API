@@ -146,5 +146,42 @@ public class sessionService {
             return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
         }
     }
+
+
+
+
+
+
+
+    public ResponseEntity<Object> updateSession(int id, session session) {
+        if(repository.findById(id).isPresent()){
+            session s = repository.findById(id).get();
+
+            if(session.getDate() != null)
+                s.setDate(session.getDate());
+
+            if(session.getDuration() != null)
+                s.setDuration(session.getDuration());
+
+            if(session.getType() != null)
+                s.setType(session.getType());
+                
+            if (session.getNotes() != null)
+                s.setNotes(session.getNotes());
+
+            repository.save(s);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Session updated successfully");
+            map.put("Data", s);
+
+            return new ResponseEntity<Object>(map, HttpStatus.OK);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "Session not found");
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+        }
+    }
     
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -83,5 +84,21 @@ public class sessionController {
     @DeleteMapping("/sessions/{id}")
     public ResponseEntity<Object> deleteSession(@PathVariable int id){
         return service.deleteSession(id);
+    }
+
+
+
+
+
+
+
+
+    /* To Update the Session Record */
+    @Operation(summary = "Update a session", description = "Updates a session by ID")
+    @ApiResponse(responseCode = "200", description = "Session updated successfully")
+    @ApiResponse(responseCode = "404", description = "Session not found")
+    @PatchMapping("/sessions/{id}")
+    public ResponseEntity<Object> updateSession(@PathVariable int id, @RequestBody session session){
+        return service.updateSession(id, session);
     }
 }
